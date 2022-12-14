@@ -121,13 +121,13 @@ def app():
         df_org = df_org.drop(df_org[(df_org['type'] == item)].index)
     df_org = df_org.drop_duplicates()
 
-    row, title, row = st.beta_columns((SPACER, ROW, SPACER))
+    row, title, row = st.columns((SPACER, ROW, SPACER))
     with title:
         st.title('Deputy information')
         st.header('')
 
 
-    row1_spacer1, row1_1, row1_spacer2, row1_2, row1_spacer3 = st.beta_columns((SPACER,ROW, SPACER, ROW, SPACER))
+    row1_spacer1, row1_1, row1_spacer2, row1_2, row1_spacer3 = st.columns((SPACER,ROW, SPACER, ROW, SPACER))
 
     with row1_1:
         st.write(deputy['title'][0] + ' ' + deputy['full_name'][0])
@@ -145,7 +145,7 @@ def app():
         text = text + study_group + ', '
 
 
-    row2_spacer1, row2_1, row2_spacer2 = st.beta_columns((SPACER/2,ROW,SPACER/2))
+    row2_spacer1, row2_1, row2_spacer2 = st.columns((SPACER/2,ROW,SPACER/2))
 
     with row2_1:
         st.text('')
@@ -176,12 +176,12 @@ def app():
     deputies_party_vote_information = deputies_party_vote_information.agg({'pour':'sum','contre':'sum', 'abstentions':'sum', 'par delegation':'sum', 'vote':'sum'})
     deputies_party_vote_information['vote percentage'] = deputies_party_vote_information['vote']/(nb_votes*len(deputy_list))
 
-    row3_spacer1, row3_1, row3_spacer2 = st.beta_columns((SPACER/2,ROW,SPACER/2))
+    row3_spacer1, row3_1, row3_spacer2 = st.columns((SPACER/2,ROW,SPACER/2))
     with row3_1:
         st.header("Participation to votes of deputy " + deputy['full_name'][0])
 
     ### Participation to votes
-    row4_spacer1, row4_1, row4_spacer2, row4_2, row4_spacer3 = st.beta_columns((SPACER,ROW,SPACER,ROW, SPACER))
+    row4_spacer1, row4_1, row4_spacer2, row4_2, row4_spacer3 = st.columns((SPACER,ROW,SPACER,ROW, SPACER))
     with row4_1, _lock:
         vote_percentage = round(selected_deputy_vote_information['vote percentage']*100,2)
         fig, ax = plt.subplots(figsize=(5, 5))
