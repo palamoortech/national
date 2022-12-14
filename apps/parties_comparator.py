@@ -103,12 +103,12 @@ def app():
     df_votes = get_data_votes()
     df_vote_total = get_data_vote_total()
 
-    title_spacer1, title, title_spacer_2 = st.beta_columns((.1,ROW,.1))
+    title_spacer1, title, title_spacer_2 = st.columns((.1,ROW,.1))
     with title:
         st.title('Compare political party at the national assembly')
 
     ### Select box and description
-    row0_spacer1, row0_1, row0_spacer2, row0_2, row0_spacer3 = st.beta_columns((SPACER,ROW,SPACER,ROW, SPACER))
+    row0_spacer1, row0_1, row0_spacer2, row0_2, row0_spacer3 = st.columns((SPACER,ROW,SPACER,ROW, SPACER))
     with row0_1, _lock:
         party_1 = st.selectbox('Select political party', df_deputies['pol party'].unique(), index=6, key='1')
         st.write(get_party_description(party_1))
@@ -120,7 +120,7 @@ def app():
         deputies_group_2 = df_deputies[df_deputies['pol party'] == party_2]
 
     ### Political parties
-    row1_spacer1, row1_1, row1_spacer2, row1_2, row1_spacer3 = st.beta_columns((SPACER,ROW,SPACER,ROW, SPACER))
+    row1_spacer1, row1_1, row1_spacer2, row1_2, row1_spacer3 = st.columns((SPACER,ROW,SPACER,ROW, SPACER))
     with row1_1, _lock:
         df_display_pol_parties = df_pol_parties.sort_values(by=['members'], ascending=False)
 
@@ -144,7 +144,7 @@ def app():
         st.pyplot(fig)
 
     ### Age repartition
-    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.beta_columns((SPACER,ROW, SPACER,ROW, SPACER))
+    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns((SPACER,ROW, SPACER,ROW, SPACER))
     with row2_1, _lock:
         st.header('Age repartition')
         fig, ax = plt.subplots(figsize=(5, 5))
@@ -158,7 +158,7 @@ def app():
         st.pyplot(fig)
 
     ### Percentage of women per parties
-    row3_spacer1, row3_1, row3_spacer2, row3_2, row3_spacer3 = st.beta_columns((SPACER,ROW,SPACER,ROW, SPACER))
+    row3_spacer1, row3_1, row3_spacer2, row3_2, row3_spacer3 = st.columns((SPACER,ROW,SPACER,ROW, SPACER))
 
     #caluculate the proportion of women per parties
     df_sex = pd.concat([df_deputies.drop(columns=['code', 'activity', 'age']),pd.get_dummies(df_deputies.drop(columns=['code', 'activity', 'age'])['sex'], prefix='sex')],axis=1)
@@ -200,7 +200,7 @@ def app():
 
 
     ### Job repartition
-    row4_spacer1, row4_1, row4_spacer2, row4_2, row4_spacer3 = st.beta_columns((SPACER,ROW, SPACER,ROW, SPACER))
+    row4_spacer1, row4_1, row4_spacer2, row4_2, row4_spacer3 = st.columns((SPACER,ROW, SPACER,ROW, SPACER))
 
     with row4_1, _lock:
         st.header('Previous job repartition')
@@ -234,7 +234,7 @@ def app():
         df_vote_total[column] = df_vote_total[column]/(df_vote_total['members']*nb_votes)
     df_vote_total = df_vote_total.sort_values(by=['vote'], ascending=False).reset_index(drop=True)
 
-    row5_spacer1, row5_1, row4_spacer2, row5_2, row5_spacer3 = st.beta_columns((SPACER,ROW, SPACER,ROW, SPACER))
+    row5_spacer1, row5_1, row4_spacer2, row5_2, row5_spacer3 = st.columns((SPACER,ROW, SPACER,ROW, SPACER))
     with row5_1, _lock:
         st.header("Presence to the votes")
         fig, ax = plt.subplots(figsize=(5, 5))
@@ -258,7 +258,7 @@ def app():
         st.pyplot(fig)
         
     ### Vote repartition
-    row6_spacer1, row6_1, row6_spacer2, row6_2, row6_spacer3 = st.beta_columns((SPACER,ROW, SPACER,ROW, SPACER))
+    row6_spacer1, row6_1, row6_spacer2, row6_2, row6_spacer3 = st.columns((SPACER,ROW, SPACER,ROW, SPACER))
 
     df_vote_total = df_vote_total.set_index('pol party')
     vote_repartition = df_vote_total.loc[party_1, ['pour', 'contre', 'abstentions']].to_list()

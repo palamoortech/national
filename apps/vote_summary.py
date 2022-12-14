@@ -57,18 +57,18 @@ def app():
     df_votes_selected = df_votes[mask_nb_voters]
 
 
-    title_spacer1, title, title_spacer_2 = st.beta_columns((.1,ROW,.1))
+    title_spacer1, title, title_spacer_2 = st.columns((.1,ROW,.1))
 
     with title:
         st.title('Vote vizualisation tool')
 
-    row0_spacer1, row0_1, row0_spacer2 = st.beta_columns((SPACER/2,ROW, SPACER/2))
+    row0_spacer1, row0_1, row0_spacer2 = st.columns((SPACER/2,ROW, SPACER/2))
     with row0_1:
         st.header('Data (all the votes from June 2017 to mid March 2021)')
     #st.write(df_votes_selected)
         
     ### Vote repartition
-    row1_spacer1, row1_1, row1_spacer2, row1_2, row1_spacer3 = st.beta_columns((SPACER,ROW, SPACER,ROW, SPACER))
+    row1_spacer1, row1_1, row1_spacer2, row1_2, row1_spacer3 = st.columns((SPACER,ROW, SPACER,ROW, SPACER))
 
     with row1_1, _lock:
         st.header('Repartition of vote presence')
@@ -85,12 +85,12 @@ def app():
         st.pyplot(fig)
 
     #heatmap (12;31) with a year selector and a data selector (nb of votes or presence)
-    title_spacer2, title_2, title_spacer_2 = st.beta_columns((.1,ROW,.1))
+    title_spacer2, title_2, title_spacer_2 = st.columns((.1,ROW,.1))
 
     with title_2:
         st.header('Heatmap of the votes during the year')
 
-    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.beta_columns((SPACER,ROW, SPACER,ROW, SPACER))
+    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3 = st.columns((SPACER,ROW, SPACER,ROW, SPACER))
     with row2_1, _lock:
         year_selected = st.selectbox('Select year', ['2017','2018','2019', '2020', '2021'], key='1')
 
@@ -121,7 +121,7 @@ def app():
     df_heatmap = df_heatmap.reindex(range(1,32), axis=1, fill_value=0).astype(int) 
 
 
-    row3_spacer1, row3_1, row3_spacer2   = st.beta_columns((SPACER, ROW, SPACER))
+    row3_spacer1, row3_1, row3_spacer2   = st.columns((SPACER, ROW, SPACER))
 
     palette = sns.color_palette("Greens",12)
     palette[0] = (1,1,1)
@@ -143,7 +143,7 @@ def app():
         plt.tight_layout()
         st.pyplot(fig)
 
-    row4_spacer1, row4_1, row4_spacer2, row4_2, row4_spacer3 = st.beta_columns((SPACER,ROW, SPACER,ROW, SPACER))
+    row4_spacer1, row4_1, row4_spacer2, row4_2, row4_spacer3 = st.columns((SPACER,ROW, SPACER,ROW, SPACER))
 
     #get the total number of demand from each party
     df_demandeur = df_votes_selected.drop(df_votes_selected.columns[0:10], axis=1)
